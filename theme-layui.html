@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jqgrid-theme</title>
+	<link rel="stylesheet" href="vendor/jqgrid/css/ui.jqgrid.css" />
+    <link rel="stylesheet" href="fonts/material-design/material-design.css">
+	<link rel="stylesheet" href="vendor/jqgrid/css/css/layui/jquery-ui-1.8.16.custom.css" />
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="vendor/jqgrid/js/jquery.jqGrid.src.js"></script>
+	<script type="text/javascript" src="vendor/jqgrid/js/i18n/grid.locale-cn.js"></script>
+</head>
+<body>
+    <div id="table_list_0_wrap" class="table-nob" style="height: 400px">
+        <table id="table_list_0"></table>
+        <div id="pager_list_0"></div>
+    </div>
+    <div style="margin-top:10px;">
+    	
+    </div>
+	<script>
+	$(function(){
+	    //页面加载完成之后执行
+	    pageInit();
+	});
+	function pageInit(){
+	    $.jgrid.defaults.styleUI = "Bootstrap";
+		var mydata=[{id:"1",invdate:"2010-05-24",name:"test",status:0,tax:"10.00",total:"2111.00"},{id:"2",invdate:"2010-05-25",name:"test2",status:2,tax:"20.00",total:"320.00"},{id:"3",invdate:"2007-09-01",name:"test3",status:3,tax:"30.00",total:"430.00"},{id:"4",invdate:"2007-10-04",name:"test",status:0,tax:"10.00",total:"210.00"},{id:"5",invdate:"2007-10-05",name:"test2",status:2,tax:"20.00",total:"320.00"},{id:"6",invdate:"2007-09-06",name:"test3",status:3,tax:"30.00",total:"430.00"},{id:"7",invdate:"2007-10-04",name:"test",status:0,tax:"10.00",total:"210.00"},{id:"8",invdate:"2007-10-03",name:"test2",status:2,amount:"300.00",tax:"21.00",total:"320.00"},{id:"9",invdate:"2007-09-01",name:"test3",status:3,amount:"400.00",tax:"30.00",total:"430.00"},{id:"11",invdate:"2007-10-01",name:"test",status:0,amount:"200.00",tax:"10.00",total:"210.00"},{id:"12",invdate:"2007-10-02",name:"test2",status:2,amount:"300.00",tax:"20.00",total:"320.00"},{id:"13",invdate:"2007-09-01",name:"test3",status:1,amount:"400.00",tax:"30.00",total:"430.00"},{id:"14",invdate:"2007-10-04",name:"test",status:0,amount:"200.00",tax:"10.00",total:"210.00"},{id:"15",invdate:"2007-10-05",name:"test2",status:2,amount:"300.00",tax:"20.00",total:"320.00"},{id:"16",invdate:"2007-09-06",name:"test3",status:3,amount:"400.00",tax:"30.00",total:"430.00"},{id:"17",invdate:"2007-10-04",name:"test",status:0,amount:"200.00",tax:"10.00",total:"210.00"},{id:"18",invdate:"2007-10-03",name:"test2",status:2,amount:"300.00",tax:"20.00",total:"320.00"},{id:"19",invdate:"2007-09-01",name:"test3",status:3,amount:"400.00",tax:"30.00",total:"430.00"},{id:"21",invdate:"2007-10-01",name:"test",status:0,amount:"200.00",tax:"10.00",total:"210.00"},{id:"22",invdate:"2007-10-02",name:"test2",status:2,amount:"300.00",tax:"20.00",total:"320.00"},{id:"23",invdate:"2007-09-01",name:"test3",status:3,amount:"400.00",tax:"30.00",total:"430.00"},{id:"24",invdate:"2007-10-04",name:"test",status:0,amount:"200.00",tax:"10.00",total:"210.00"},{id:"25",invdate:"2007-10-05",name:"test2",status:2,amount:"300.00",tax:"20.00",total:"320.00"},{id:"26",invdate:"2007-09-06",name:"test3",status:3,amount:"400.00",tax:"30.00",total:"430.00"},{id:"27",invdate:"2007-10-04",name:"test",status:0,amount:"200.00",tax:"10.00",total:"210.00"},{id:"28",invdate:"2007-10-03",name:"test2",status:2,amount:"300.00",tax:"20.00",total:"320.00"},{id:"29",invdate:"2007-09-01",name:"test3",status:3,amount:"400.00",tax:"30.00",total:"430.00"}];
+	    $("#table_list_0").jqGrid({
+	        data: mydata,
+	        datatype: "local",
+	        height: $("#table_list_0_wrap").height() - 120,
+	        autowidth: true,
+	        pager: "#pager_list_0",
+	        pagerpos: "left",
+	        viewrecords: true,
+	        caption: "综合实例",
+	        hidegrid: false,
+	        rownumbers: false, // 行序号
+	        multiselect: true, // 多选框
+	        multiselectWidth: 30,
+	        fixed: false,
+	        shrinkToFit: true, // 是否按比例初始化列宽度
+	        rowNum: 14,
+	        rowList: [10, 20, 30],
+	        colNames: ["序号", "日期", "客户", "金额", "运费", "总额", "状态"],
+	        colModel: [
+	            { name: "id", index: "id", width: 50, align: "center"},
+	            { name: "invdate", index: "invdate", width: 100, align: "center"},
+	            { name: "name", index: "name", width: 100, align: "center"},
+	            { name: "amount", index: "amount", width: 100, align: "center"},
+	            { name: "tax", index: "tax", width: 100, align: "center"},
+	            { name: "total", index: "total", width: 100, align: "center", formatter:function(cellvalue, options, rowObject){
+	                var temp = "<span style='color: #ff0000'>¥ "+cellvalue+"</span>";
+	                return temp;
+	            }},
+	            { name: "status", index: 0, width: 150, align: "center", formatter:function(cellvalue, options, rowObject){
+	                console.log(cellvalue)
+	                var name = cellvalue==0 ? '跟进中' : cellvalue==1 ? '有意向' : '已成交';
+	                var classname = cellvalue==0 ? 'danger' : cellvalue==1 ? 'warning' : 'primary';
+	                var temp = "<span class='badge badge-"+classname+"'>"+name+"</span>";
+	                return temp;
+	            }}
+	        ],
+	    });
+	    resetTableSize($("#table_list_0"), $("#table_list_0_wrap"));
+	    $(window).bind("resize", function () {
+	        resetTableSize($("#table_list_0"), $("#table_list_0_wrap"));
+	    });
+	    function resetTableSize(table, widthWrapper){
+	        if(table && table.length > 0){
+	            // 调整整体宽度
+	            if(widthWrapper && widthWrapper.length > 0){
+	                var width = widthWrapper.width() - 2;
+	                table.setGridWidth(width);
+	            }
+	            var options = {};
+	            // 调整单元格宽度
+	            options.shrinkToFit = $(document).width() > 1000;
+	            table.setGridParam(options);
+	        }
+	    }
+	   }
+	</script>
+</body>
+</html>
